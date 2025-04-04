@@ -8,31 +8,35 @@ Guessed 4 numbers. You need to guess it.
 You have 3 attempts.
 In case if some number in your inputted NUMBER is correct and in correct position you will receive message BULLS.
 In case if some number in your inputted NUMBER is correct but position is incorrect you will receive message COWS.
+HINT: first number couldn't be 0.
 Good luck!
 ''')
 
 print(rules)
 
-#array_nums = []
-
-number_one = str(random.randint(0, 9))
+number_one = str(random.randint(1, 9))
 number_two = str(random.randint(0, 9))
 number_three = str(random.randint(0, 9))
 number_four = str(random.randint(0, 9))
-number = int(number_one + number_two + number_three + number_four)
+number = str(number_one + number_two + number_three + number_four)
 
-array_nums = (number_one, number_two, number_three, number_four)
+# print(number)
 
-print(array_nums)
+player_num = str(input("Your number is: "))
 
-guess_num = int(input("Your number is: "))
 
-first_num = guess_num // 1000
-second_num = guess_num // 100 % 10
-third_num = guess_num // 10 % 10
-fourth_num = guess_num % 10
+def compare(number_from_player: str, known_number: str):
+	BULL = 0
+	COWS = 0
+	for number in range(len(known_number)):
+		if number_from_player[number] == known_number[number]:
+			BULL = BULL + 1
+		if number_from_player[number] in known_number and number_from_player[number] != known_number[number]:
+			COWS = COWS + 1
+	print(f"BULL is {BULL} and COWS is {COWS}")
 
-if int(guess_num) == number:
-	print(f"You win! correct is number is {array_nums}")
-else:
-	print(f" You lose :( Correct num is {number}")
+
+print(compare(player_num, number))
+
+
+
