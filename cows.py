@@ -1,7 +1,11 @@
+"""This is main file with all logic"""
 import random
 
 
 def generate_num():
+    """
+    Generate 4digits number without replaying number inside
+    """
     number = str()
     while len(number) != 4:
         new_num = str(random.randint(0, 9))
@@ -12,11 +16,10 @@ def generate_num():
     return number
 
 
-guessed_number = generate_num()
-print(guessed_number)
-
-
 def check_player_input(number_from_player):
+    """
+    Checking player input
+    """
     try:
         int(number_from_player)
         if len(number_from_player) != 4:
@@ -34,11 +37,10 @@ def check_player_input(number_from_player):
         return "Write a number"
 
 
-player_num = input("please write your number: ")
-print(check_player_input(player_num))
-
-
 def counting_cows_and_bulls(comp_number, player_number):
+    """
+    Main logic of whole program
+    """
     cow_counter = 0
     bull_counter = 0
     for number in comp_number:
@@ -48,5 +50,11 @@ def counting_cows_and_bulls(comp_number, player_number):
                 bull_counter = bull_counter + 1
     return f"So you have {cow_counter} cow(s) and {bull_counter} buuul(s)!"
 
+
+guessed_number = generate_num()
+print(guessed_number)
+
+player_num = input("please write your number: ")
+print(check_player_input(player_num))
 
 print(counting_cows_and_bulls(guessed_number, player_num))
