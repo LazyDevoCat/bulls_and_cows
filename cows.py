@@ -23,7 +23,6 @@ def check_player_input(number_from_player):
         int(number_from_player)
         if len(number_from_player) != 4:
             return "Write 4-digits"
-
         checking = set()
         for num in number_from_player:
             checking.add(num)
@@ -42,9 +41,10 @@ def counting_cows_and_bulls(comp_number, player_number):
     bull_counter = 0
     for number in comp_number:
         if number in player_number:
-            cow_counter = cow_counter + 1
-            if player_number.rindex(number) == comp_number.rindex(number):
-                bull_counter = bull_counter + 1
+            if player_number.index(number) == comp_number.index(number):
+                bull_counter += 1
+            else:
+                cow_counter += 1
     return f"So you have {cow_counter} cow(s) and {bull_counter} buuul(s)!"
 
 
@@ -77,6 +77,7 @@ def rules():
     number 5)
     4) COW - your digit is only correct number (ex: your num 1253 guessed is 2987 -> 1 cow number 2)
     """
+
 
 def attempts():
     """
