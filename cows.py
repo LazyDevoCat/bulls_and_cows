@@ -23,7 +23,6 @@ def check_player_input(number_from_player):
         int(number_from_player)
         if len(number_from_player) != 4:
             return "Write 4-digits"
-
         checking = set()
         for num in number_from_player:
             checking.add(num)
@@ -42,9 +41,10 @@ def counting_cows_and_bulls(comp_number, player_number):
     bull_counter = 0
     for number in comp_number:
         if number in player_number:
-            cow_counter = cow_counter + 1
-            if player_number.rindex(number) == comp_number.rindex(number):
-                bull_counter = bull_counter + 1
+            if player_number.index(number) == comp_number.index(number):
+                bull_counter += 1
+            else:
+                cow_counter += 1
     return f"So you have {cow_counter} cow(s) and {bull_counter} buuul(s)!"
 
 
@@ -65,9 +65,41 @@ def attempts_for_input():
         return "Too many invalid attempts."
 
 
+def rules():
+    """
+    Return just rules
+    """
+    return """Hello! You are running nano-game called "bulls and cows" Please read these rules:
+    1) Guess 4-digit
+    number awhere all digits are different.
+    2) You have 3 attempts to guess number. And you will receive some tips.
+    3) BULL - in your digit correct index and correct number (ex: your num 1253 guessed num is 4958 -> one bull
+    number 5)
+    4) COW - your digit is only correct number (ex: your num 1253 guessed is 2987 -> 1 cow number 2)
+    """
+
+
+def attempts():
+    """
+    Call two functions
+    attempts_for_input
+    and
+    counting_cows_and_bulls
+    """
+    attempts = 0
+    while attempts < 3:
+        user_input = attempts_for_input()
+        print(counting_cows_and_bulls(guessed_number, user_input))
+        attempts = attempts + 1
+
+
+print(rules())
+
 guessed_number = generate_num()
 print(guessed_number)
 
 
-user_input = attempts_for_input()
-print(counting_cows_and_bulls(guessed_number, user_input))
+# user_input = attempts_for_input()
+# print(counting_cows_and_bulls(guessed_number, user_input))
+
+attempts()
