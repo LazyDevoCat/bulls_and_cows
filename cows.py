@@ -1,5 +1,6 @@
 """This is main file with all logic"""
 import random
+import sys
 
 
 def generate_num():
@@ -62,7 +63,16 @@ def attempts_for_input():
         wrong_inputs = wrong_inputs - 1
         print(f"Attempts left: {wrong_inputs}")
     if wrong_inputs == 0:
-        return "Too many invalid attempts."
+        exit_program("Too many invalid attempts.")
+
+
+def exit_program(some_message):
+    """
+    :param some_message:
+    :return: system exit 0 which close program with exit code 0 (success)
+    """
+    print(f"{some_message}")
+    sys.exit(0)
 
 
 def rules():
@@ -102,4 +112,5 @@ print(guessed_number)
 # user_input = attempts_for_input()
 # print(counting_cows_and_bulls(guessed_number, user_input))
 
-attempts()
+if __name__ == "__main__":
+    attempts()
