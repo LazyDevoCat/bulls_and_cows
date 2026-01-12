@@ -1,3 +1,5 @@
+## Small game 
+
 ### Rules
 
 1) Secret Number:
