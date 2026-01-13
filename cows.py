@@ -97,20 +97,13 @@ def attempts():
     counting_cows_and_bulls
     """
     attempts = 0
+    guessed_number = generate_num()
     while attempts < 3:
         user_input = attempts_for_input()
         print(counting_cows_and_bulls(guessed_number, user_input))
         attempts = attempts + 1
 
 
-print(rules())
-
-guessed_number = generate_num()
-print(guessed_number)
-
-
-# user_input = attempts_for_input()
-# print(counting_cows_and_bulls(guessed_number, user_input))
-
 if __name__ == "__main__":
+    print(rules())
     attempts()
